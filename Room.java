@@ -21,4 +21,8 @@ public class Room {
         return perNight;
     }
 
+    public boolean getAvailable() {
+        return isAvailable;
+    }
+
 }

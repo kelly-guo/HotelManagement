@@ -10,9 +10,12 @@ public class Reservation {
     private LocalDate checkIn;
     private LocalDate checkOut;
     private String status; //Confirmed, Cancelled
+    private static int nextId = 1000;
 
-    public Reservation(int reservationId, Customer customer, Room room, LocalDate checkIn, LocalDate checkOut, String status) {
-        this.reservationId = reservationId;
+    public Reservation(Customer customer, Room room, LocalDate checkIn, LocalDate checkOut, String status) {
+        reservationId = nextId;
+        nextId++;
+
         this.customer = customer;
         this.room = room;
         this.checkIn = checkIn;
@@ -27,6 +30,18 @@ public class Reservation {
     public double getTotalCost() {
         int nights = (int) getNights();
         return room.getPricePerNight() * nights;
+    }
+
+    public LocalDate getCheckIn() {
+        return checkIn;
+    }
+
+    public LocalDate getCheckOut() {
+        return checkOut;
+    }
+
+    public Room getRoom() {
+        return room;
     }
 
 }
