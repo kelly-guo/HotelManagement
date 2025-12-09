@@ -25,4 +25,8 @@ public class Room {
         return isAvailable;
     }
 
+    public void available(boolean b) {
+        isAvailable = b;
+    }
+
 }

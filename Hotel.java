@@ -29,7 +29,36 @@ public class Hotel {
             }
         }
         Reservation r = new Reservation(customer, room, checkIn, checkOut, "Confirmed");
+        reservations.add(r);
         return r;
+    }
+
+    public List<Room> searchAvailable(LocalDate checkIn, LocalDate checkOut) {
+        List<Room> res = new ArrayList<>();
+        for (Room room : rooms) {
+            boolean isAvailable = true;
+            for (Reservation r : reservations) {
+                if (r.getRoom() == room) {
+                    boolean overlaps = r.getCheckIn().isBefore(checkOut) && r.getCheckOut().isAfter(checkIn);
+                    if (overlaps) {
+                        isAvailable = false;
+                        break;
+                    }
+                }
+            }
+            if (isAvailable) {
+                res.add(room);
+            }
+        }
+        return res;
+    }
+
+    public void addRooms(Room room) {
+        rooms.add(room);
+    }
+
+    public void addCustomer(Customer customer) {
+        customers.add(customer);
     }
 
 }
