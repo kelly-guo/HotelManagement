@@ -53,12 +53,22 @@ public class Hotel {
         return res;
     }
 
-    public void addRooms(Room room) {
+    public void addRoom(Room room) {
         rooms.add(room);
     }
 
     public void addCustomer(Customer customer) {
         customers.add(customer);
+    }
+
+    public void cancelReservation(int reservationId) {
+        for (Reservation r : reservations) {
+            if (r.getId() == reservationId) {
+                if (r.getCheckIn().isAfter(LocalDate.now())) {
+                    r.setStatus("Cancelled");
+                }
+            }
+        }
     }
 
 }

@@ -44,4 +44,12 @@ public class Reservation {
         return room;
     }
 
+    public int getId() {
+        return reservationId;
+    }
+
+    public void setStatus(String s) {
+        status = s;
+    }
+
 }
