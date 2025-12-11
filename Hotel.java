@@ -29,6 +29,7 @@ public class Hotel {
             }
         }
         Reservation r = new Reservation(customer, room, checkIn, checkOut, "Confirmed");
+        room.available(false);
         reservations.add(r);
         return r;
     }
@@ -66,9 +67,30 @@ public class Hotel {
             if (r.getId() == reservationId) {
                 if (r.getCheckIn().isAfter(LocalDate.now())) {
                     r.setStatus("Cancelled");
+                    r.getRoom().available(true);
                 }
             }
         }
+    }
+
+    public void checkOut(int roomNumber) {
+        for (Room room : rooms) {
+            if (room.getRoomNumber() == roomNumber) {
+                room.available(true);
+            }
+        }
+
+    }
+
+    public double calculateOccupuancy() {
+        int totalRooms = 0;
+        for (Room room : rooms) {
+            if (room.getAvailable()) {
+                totalRooms++;
+            }
+        }
+        return (totalRooms / rooms.size()) * 100;
+
     }
 
 }
