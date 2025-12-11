@@ -73,15 +73,6 @@ public class Hotel {
         }
     }
 
-    public void checkOut(int roomNumber) {
-        for (Room room : rooms) {
-            if (room.getRoomNumber() == roomNumber) {
-                room.available(true);
-            }
-        }
-
-    }
-
     public double calculateOccupuancy() {
         int totalRooms = 0;
         for (Room room : rooms) {
